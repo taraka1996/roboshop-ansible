@@ -4,11 +4,11 @@ Description=Payment Service
 [Service]
 User=root
 WorkingDirectory=/app
-Environment=CART_HOST=cart.devops-b-71.online
-Environment=CART_PORT=8080
-Environment=USER_HOST=user.devops-b-71.online
-Environment=USER_PORT=8080
-Environment=AMQP_HOST=rabbitmq.devops-b-71.online
+Environment=CART_HOST={{ lookup('amazon.aws.aws_ssm', '{{env}}.{{component}}.cart_host', region='us-east-1') }}
+Environment=CART_PORT={{ lookup('amazon.aws.aws_ssm', '{{env}}.{{component}}.cart_port', region='us-east-1') }}
+Environment=USER_HOST={{ lookup('amazon.aws.aws_ssm', '{{env}}.{{component}}.user_host', region='us-east-1') }}
+Environment=USER_PORT={{ lookup('amazon.aws.aws_ssm', '{{env}}.{{component}}.user_port', region='us-east-1') }}
+Environment=AMQP_HOST={{ lookup('amazon.aws.aws_ssm', '{{env}}.{{component}}.amqp_host', region='us-east-1') }}
 Environment=AMQP_USER=roboshop
 Environment=AMQP_PASS=roboshop123
 
