@@ -1,4 +1,4 @@
- my global config
+# my global config
 global:
   scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
@@ -9,12 +9,13 @@ alerting:
   alertmanagers:
     - static_configs:
         - targets:
-          # - alertmanager:9093
+            - localhost:9093
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
-  # - "first_rules.yml"
-  # - "second_rules.yml"
+{% for file in alert_files %}
+  - {{ file }}
+{% endfor %}
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
@@ -22,7 +23,7 @@ scrape_configs:
   - job_name: 'roboshop-nodes'
     ec2_sd_configs:
       - region: us-east-1
-        port: 9100          
+        port: 9100
         filters:
-         -name: "tag:Monitor"
-          values: ["yes"]                                                             
+          - name: "tag:Monitor"
+            values: ["yes"]
