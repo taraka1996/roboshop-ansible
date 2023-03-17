@@ -26,8 +26,8 @@ scrape_configs:
         port: 9100
         filters:
           - name: "tag:Monitor"
-              values: ["yes"]
+            values: ["yes"]
 
-   relabel_configs:
+    relabel_configs:
     - source_labels: [__meta_ec2_tag_Name]
       target_label: name
