@@ -7,8 +7,3 @@
     tasks_from: exporter
   when: node_exporter
 
-- name: Install Filebeat
-  ansible.builtin.import_role:
-    name: elk
-    tasks_from: filebeat
-  when: filebeat
