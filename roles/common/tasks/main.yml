@@ -1,13 +1,16 @@
-##ansible.builtin.shell: set-hostname {{ component }}
+- name: Setup Hostname
+  ansible.builtin.shell: set-hostname {{ component }}
 
-#- name: Install Exporter
-  #nsible.builtin.import_role:
-    #name: prometheus
-   # tasks_from: exporter
-  #when: node_exporter
+- name: Install Exporter
+  ansible.builtin.import_role:
+    name: prometheus
+    tasks_from: exporter
+  when: node_exporter
 
-- #name: Install Filebeat
-  #ansible.builtin.import_role:
-    #name: elk
-    #tasks_from: filebeat
-  #when: filebeat
+- name: Install Filebeat
+  ansible.builtin.import_role:
+    name: elk
+    tasks_from: filebeat
+  when: filebeat
+
+
