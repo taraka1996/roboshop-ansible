@@ -1,5 +1,4 @@
-- name: Setup Hostname
-  ansible.builtin.shell: set-hostname {{ component }}
+##ansible.builtin.shell: set-hostname {{ component }}
 
 #- name: Install Exporter
   #nsible.builtin.import_role:
